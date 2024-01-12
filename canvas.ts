@@ -101,6 +101,13 @@
     this.canvasRef.nativeElement.height = this.height;
   }
 
+  initAnimation() {
+    this.animate();
+    for (const p of this.points) {
+      this.shiftPoint(p);
+    }
+  }
+
   animate() {
     if (this.animateHeader) {
       this.ctx.clearRect(0, 0, this.width, this.height);
@@ -125,15 +132,6 @@
     }
     requestAnimationFrame(() => this.animate());
   }
-
-  initAnimation() {
-    this.animate();
-    for (const p of this.points) {
-      this.shiftPoint(p);
-    }
-  }
-
-
 
   shiftPoint(p: { originX: number, originY: number, x: number, y: number }) {
     TweenMax.to(p, 1 + 1 * Math.random(), {
